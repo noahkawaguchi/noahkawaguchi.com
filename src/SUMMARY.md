@@ -1,3 +1,6 @@
 # Summary
 
-- [Chapter 1](./chapter_1.md)
+- [About](about.md)
+
+- [Blog](blog.md)
+  - [Dummy Post](blog/dummy-post.md)
