@@ -1,11 +1,11 @@
 [book]
-title = "Noah Kawaguchi"
-authors = ["Noah Kawaguchi"]
+title       = "Noah Kawaguchi"
+authors     = ["Noah Kawaguchi"]
 description = "Noah Kawaguchi's website"
-language = "en"
+language    = "en"
 
 [rust]
 edition = "2024"
 
 [output.html]
-print = { enable = false }
+print.enable = false
