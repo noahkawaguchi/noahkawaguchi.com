@@ -1,0 +1,8 @@
+words = [
+    "Kawaguchi",
+    "Kawaguchi's",
+    "mdbook",
+    "nixpkgs",
+    "pkgs",
+]
+ignore_paths = ["flake.lock"]
