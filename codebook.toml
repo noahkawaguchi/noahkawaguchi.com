@@ -4,5 +4,6 @@ words = [
     "mdbook",
     "nixpkgs",
     "pkgs",
+    "rustfmt",
 ]
 ignore_paths = ["flake.lock"]
