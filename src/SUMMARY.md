@@ -6,6 +6,6 @@
 
 <!-- ANCHOR: blog-posts -->
 
-- [Dummy Post](blog/dummy-post.md)
+- [Encoding TCP in Rust's Type System, Part 1: A Sequence Number Is Not a `u32`](blog/typenet-post-1.md)
 
 <!-- ANCHOR_END: blog-posts -->

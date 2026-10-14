@@ -1,6 +1,12 @@
 words = [
+    "ISN",
     "Kawaguchi",
     "Kawaguchi's",
+    "NXT",
+    "RCV",
+    "SND",
+    "TCP's",
+    "acked",
     "mdbook",
     "nixpkgs",
     "noahkawaguchi",
@@ -8,3 +14,4 @@ words = [
     "rustfmt",
 ]
 ignore_paths = ["flake.lock"]
+ignore_patterns = ['\b0x[a-fA-F0-9_]{4,9}\b']
