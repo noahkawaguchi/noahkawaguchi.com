@@ -1,6 +1,11 @@
 # Summary
 
-- [About](about.md)
+[Home](index.md)
 
-- [Blog](blog.md)
-  - [Dummy Post](blog/dummy-post.md)
+# Blog
+
+<!-- ANCHOR: blog-posts -->
+
+- [Dummy Post](blog/dummy-post.md)
+
+<!-- ANCHOR_END: blog-posts -->

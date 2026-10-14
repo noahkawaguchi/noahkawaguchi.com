@@ -8,4 +8,5 @@ language    = "en"
 edition = "2024"
 
 [output.html]
-print.enable = false
+print.enable  = false
+additional-js = ["theme/script.js"]
