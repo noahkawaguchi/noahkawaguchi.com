@@ -1,5 +1,9 @@
 # Encoding TCP in Rust's Type System, Part 1: A Sequence Number Is Not a `u32`
 
+October 17, 2026
+
+---
+
 <br />
 
 In this post, I'll discuss one example of how I used Rust's type system to enforce correctness while implementing TCP/IP in my project [Typenet](https://github.com/noahkawaguchi/typenet).
