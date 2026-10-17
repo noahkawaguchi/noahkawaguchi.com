@@ -1,0 +1,70 @@
+name: CI/CD
+
+permissions: { contents: read }
+
+# Serialize entire runs so deployments happen in push order
+concurrency: { group: "${{ github.workflow }}" }
+
+on:
+  push: { branches: [main] }
+  workflow_dispatch: {}
+
+jobs:
+  test:
+    runs-on: ubuntu-26.04-arm
+    steps:
+      - &checkout
+        uses: actions/checkout@v7
+        with: { persist-credentials: false }
+
+      - &nix-install
+        name: Install Nix
+        uses: nixbuild/nix-quick-install-action@v35
+
+      - &nix-cache
+        name: Cache Nix store
+        uses: nix-community/cache-nix-action@v7
+        with:
+          primary-key: >-
+            nix-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
+          restore-prefixes-first-match: nix-${{ runner.os }}-${{ runner.arch }}-
+
+      - name: Test Rust code
+        run: nix develop --command mdbook test
+
+  spell-check:
+    runs-on: ubuntu-26.04-arm
+    steps:
+      - *checkout
+      - *nix-install
+      - *nix-cache
+      - name: Check spelling
+        run: nix develop --command just spell-check
+
+  build:
+    runs-on: ubuntu-26.04-arm
+    steps:
+      - *checkout
+      - *nix-install
+      - *nix-cache
+
+      - name: Build mdBook
+        run: nix develop --command mdbook build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v5
+        with: { path: book }
+
+  deploy:
+    runs-on: ubuntu-26.04-arm
+    needs: [test, spell-check, build]
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
