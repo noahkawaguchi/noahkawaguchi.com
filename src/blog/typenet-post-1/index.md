@@ -161,7 +161,7 @@ Accordingly, I split `Seq` into `SeqPoint` and `SeqOffset`, defining only the op
 The code was then able to mirror the table of clock operations above.[^2] As an added bonus, the sign of the offset could be used in the `precedes` implementation to slightly deduplicate logic and ensure the two wouldn't fall out of step.
 
 ```rust
-{{#rustdoc_include ../../listings/typenet-post-1/level_3.rs}}
+{{#rustdoc_include ../../../listings/typenet-post-1/level_3.rs}}
 
 let [min, max] = [SeqPoint::new(u32::MIN), SeqPoint::new(u32::MAX)];
 
@@ -185,7 +185,7 @@ println!("Assertions passed!");
 With that change, the invalid operations no longer compiled.
 
 ```rust,compile_fail
-{{#rustdoc_include ../../listings/typenet-post-1/level_3.rs:9999}}
+{{#rustdoc_include ../../../listings/typenet-post-1/level_3.rs:9999}}
 #
 // 3 o'clock + 5 o'clock
 let nonsense1 = SeqPoint::new(1) + SeqPoint::new(2);
@@ -204,7 +204,7 @@ However, there was still a hole in the `SeqPoint` and `SeqOffset` model. First, 
 When determining the number of bytes sent but not yet acknowledged by the peer, the value to be calculated is the offset of `SND.NXT` past `SND.UNA`. In the `SeqPoint`/`SeqOffset` model, all three of the variables above were represented using `SeqPoint`, so `RCV.NXT` could easily be used in place of `SND.NXT` or `SND.UNA`, producing nonsense.
 
 ```rust
-{{#rustdoc_include ../../listings/typenet-post-1/level_3.rs:9999}}
+{{#rustdoc_include ../../../listings/typenet-post-1/level_3.rs:9999}}
 #
 struct ConnState {
     snd_nxt: SeqPoint,
@@ -238,7 +238,7 @@ Unlike the split into `SeqPoint` and `SeqOffset`, which was about types that beh
 > Everything is in one module here, but in the codebase, the `Direction` trait is [sealed](https://rust-lang.github.io/api-guidelines/future-proofing.html#sealed-traits-protect-against-downstream-implementations-c-sealed), ensuring that using it as a bound means exactly `In` or `Out`.
 
 ```rust
-{{#rustdoc_include ../../listings/typenet-post-1/level_4.rs}}
+{{#rustdoc_include ../../../listings/typenet-post-1/level_4.rs}}
 
 // The compiler infers here that the second `SeqPoint` must also be `Out` since arrays
 // must contain only one type
@@ -256,7 +256,7 @@ println!("Assertions passed!");
 Attempting to operate on two values from opposing streams then failed to compile.
 
 ```rust,compile_fail
-{{#rustdoc_include ../../listings/typenet-post-1/level_4.rs:9999}}
+{{#rustdoc_include ../../../listings/typenet-post-1/level_4.rs:9999}}
 #
 let nonsense1 = SeqPoint::<Out>::new(1) + SeqOffset::<In>::new(2);
 let nonsense2 = SeqOffset::<In>::new(1) + SeqOffset::<Out>::new(2);
@@ -265,7 +265,7 @@ let nonsense2 = SeqOffset::<In>::new(1) + SeqOffset::<Out>::new(2);
 This was similar to the Level 3 `SeqPoint` and `SeqOffset` implementation, except it added a restriction that operations like the addition shown here were only defined when the type parameter `D` was the same between the two operands. This created a static guarantee that, for example, `RCV.NXT` could not be used in place of `SND.NXT` or `SND.UNA`.
 
 ```rust
-{{#rustdoc_include ../../listings/typenet-post-1/level_4.rs:9999}}
+{{#rustdoc_include ../../../listings/typenet-post-1/level_4.rs:9999}}
 #
 struct ConnState {
     snd_nxt: SeqPoint<Out>,
@@ -289,7 +289,7 @@ println!("Assertions passed!");
 The same misuse of `ConnState` fields from before then failed to compile.
 
 ```rust,compile_fail
-{{#rustdoc_include ../../listings/typenet-post-1/level_4.rs:9999}}
+{{#rustdoc_include ../../../listings/typenet-post-1/level_4.rs:9999}}
 #
 # struct ConnState {
 #     snd_nxt: SeqPoint<Out>,
