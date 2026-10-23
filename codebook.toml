@@ -7,11 +7,13 @@ words = [
     "SND",
     "TCP's",
     "acked",
+    "frontmatter",
     "mdbook",
     "nixbuild",
     "nixpkgs",
     "noahkawaguchi",
     "pkgs",
+    "pname",
     "rustfmt",
 ]
 ignore_paths = ["flake.lock"]
