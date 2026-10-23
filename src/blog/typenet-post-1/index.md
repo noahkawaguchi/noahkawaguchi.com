@@ -1,3 +1,8 @@
+---
+date: 2026-10-17
+feed: include
+---
+
 # Encoding TCP in Rust's Type System, Part 1: A Sequence Number Is Not a `u32`
 
 October 17, 2026
