@@ -1,10 +1,13 @@
 for (const a of document.querySelectorAll("a[data-m]")) {
-  const addr = [...a.dataset.m]
-    .map((c) => String.fromCharCode(c.charCodeAt(0) - 1))
-    .join("");
+  const f = (data, n) =>
+    [...data].map((c) => String.fromCharCode(c.charCodeAt(0) + n)).join("");
+
+  const addr = f(a.dataset.m, -1);
+  const label = a.dataset.mLabel ? f(a.dataset.mLabel, 15) : addr;
 
   a.href = "mailto:" + addr;
-  a.textContent = addr;
+  a.title = addr;
+  a.textContent = label;
 }
 
 /** Swaps a trailing `/index.html` for `/` */

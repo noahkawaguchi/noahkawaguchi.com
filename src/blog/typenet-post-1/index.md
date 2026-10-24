@@ -331,3 +331,7 @@ The biggest thing I learned in this part of the project is that just because som
 [^1]: In the project, I initially used the name `seq_lt` and switched to `precedes` partway through. For consistency, I use `precedes` throughout this post.
 
 [^2]: The codebase implements only the subset of valid operations that are actually used. Additionally, the examples here use concrete `i32` inside `SeqOffset` for simplicity, while the codebase uses generics. This is because some offsets are naturally unsigned, such as window sizes and payload lengths.
+
+---
+
+{{#include ../../includes/footer.md}}
