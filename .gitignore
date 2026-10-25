@@ -2,3 +2,4 @@
 /.direnv/
 /listings/target/
 /src/rss.xml
+/src/feed.xml

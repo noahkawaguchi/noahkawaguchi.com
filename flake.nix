@@ -40,6 +40,7 @@
               (rust-bin.stable.latest.minimal.override { extensions = [ "rust-analyzer" ]; })
 
               codebook
+              jq
               just
               mdbook
               mdbook-frontmatter-strip

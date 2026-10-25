@@ -6,7 +6,7 @@
 
 👔 [linkedin.com/in/noah-kawaguchi](https://www.linkedin.com/in/noah-kawaguchi)
 
-🛜 [RSS feed](rss.xml)
+🛜 [RSS feed](feed.xml)
 
 📧 <a data-m="xfctjuf.dpoubduAopbilbxbhvdij/dpn">(requires JavaScript)</a>
 
