@@ -15,6 +15,7 @@ site-url      = "https://noahkawaguchi.com/" # Required by `mdbook-rss-feed`
 [preprocessor.rss-feed]
 renderers        = ["html"]              # Ensure the preprocessor only runs for HTML builds
 before           = ["frontmatter-strip"] # Run this before `mdbook-frontmatter-strip`
+full-preview     = true                  # Use the whole chapter as the preview, not an excerpt
 default-behavior = "exclude-all"         # Opt-in mode: only include chapters marked `feed: include`
 strict           = true                  # Fail the build on a frontmatter parse error
 
