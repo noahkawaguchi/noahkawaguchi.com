@@ -12,8 +12,8 @@ set -o errexit -o nounset -o pipefail
 #
 ################################################################################
 
-# Answer `feed-rename.sh supports html` with a 0 for yes (this script doesn't
-# touch the HTML but just needs to run)
+# Answer `feed-postprocess.sh supports html` with a 0 for yes (this script
+# doesn't touch the HTML but just needs to run)
 if [[ "${1:-}" == "supports" ]]; then exit 0; fi
 
 # Find the source directory
