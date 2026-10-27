@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
 set -o errexit -o nounset -o pipefail
 
+################################################################################
 #
-# mdBook preprocessor to rename `rss.xml` to `feed.xml`, including the self link
-# contained in the file
+# mdBook preprocessor that:
 #
+# - Renames `rss.xml` to `feed.xml`, including the self link contained in the
+#   file
+# - Cleans up item URLs by removing trailing `index.html` (matching the clean
+#   URLs from `theme/script.js`)
+#
+################################################################################
 
 # Answer `feed-rename.sh supports html` with a 0 for yes (this script doesn't
 # touch the HTML but just needs to run)
@@ -20,8 +26,16 @@ feed="$root/$src/feed.xml"
 
 if [[ -f "$rss" ]]; then
   tmp=$(mktemp)
-  # Rewrite the self link to the new file name in the XML itself
-  sed 's|/rss\.xml"|/feed.xml"|' "$rss" >"$tmp"
+
+  # Rewrite the self link to the new file name and strip trailing `index.html`
+  # from `<link>` and `<guid>` only (not post content, which may link
+  # elsewhere). The `g` flag is needed because the whole feed is written on one
+  # line.
+  sed \
+    -e 's|/rss\.xml"|/feed.xml"|' \
+    -e 's|/index\.html</link>|/</link>|g' \
+    -e 's|/index\.html</guid>|/</guid>|g' \
+    "$rss" >"$tmp"
 
   # Only write when something changed
   if cmp -s "$tmp" "$feed"; then

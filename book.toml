@@ -21,7 +21,8 @@ strict           = true                  # Fail the build on a frontmatter parse
 [preprocessor.frontmatter-strip]
 renderers = ["html"]
 
-# Rename `rss.xml` to `feed.xml`, including the self link inside the file
+# Rename `rss.xml` to `feed.xml`, including the self link inside the file, and remove trailing
+# `index.html` from item URLs
 [preprocessor.feed-rename]
 command = "./scripts/feed-rename.sh"
 after   = ["rss-feed"]
