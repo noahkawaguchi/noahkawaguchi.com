@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <clipPath id="band">
+      <rect x="0" y="6" width="32" height="20"/>
+    </clipPath>
+    <clipPath id="right">
+      <rect x="16" y="6" width="14" height="20"/>
+    </clipPath>
+  </defs>
+  <rect width="32" height="32" rx="6" fill="#1a1a1a"/>
+  <g transform="translate(16.35 16) scale(0.72) translate(-16 -16)" fill="none" stroke="#f0f0f0" stroke-width="4" stroke-miterlimit="10">
+    <polyline clip-path="url(#band)" points="4,30 4,6 16,26 16,2"/>
+    <polyline clip-path="url(#right)" points="29,3 17.5,16 29,29"/>
+  </g>
+</svg>

@@ -9,6 +9,7 @@ words = [
     "acked",
     "frontmatter",
     "mdbook",
+    "miterlimit",
     "nixbuild",
     "nixpkgs",
     "noahkawaguchi",
